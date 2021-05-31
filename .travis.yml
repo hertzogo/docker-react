@@ -1,0 +1,10 @@
+sudo: required
+language: generic
+services:
+  - docker
+
+before_install:
+  - docker build -t hertzogo/docker-react -f Dockerfile.dev .
+
+script:
+  - docker run -e CI=true hertzogo/docker-react npm run test -- --coverage
